@@ -13,4 +13,7 @@ urlpatterns =[
 urlpatterns =[
     url(r'^sum/(?P<numbers>[\d/]+)/$', views.mysum),
         #[\d/]+ : 숫자혹은 /가 하나이상 반복이된다면
+
+    #/hello/공유/37/ 응답으로서 "안녕하세요. 공유. 37살이시네요."    
+    url(r'^hello/(?P<name>[ㄱ-힣]+)/(?P<age>\d+)/$', views.hello),
 ]

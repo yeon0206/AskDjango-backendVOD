@@ -16,3 +16,6 @@ def mysum(request,numbers):
 
     result=sum(map(lambda s: int(s or 0), numbers.split('/'))) # or는 s가 거짓일때() 0으로 치환되서 처리
     return HttpResponse(result)
+
+def hello(request, name, age):
+    return HttpResponse('안녕하세요. {}. {}살이시네요.'.format(name,age))
