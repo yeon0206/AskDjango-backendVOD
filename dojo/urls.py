@@ -16,4 +16,9 @@ urlpatterns =[
 
     #/hello/공유/37/ 응답으로서 "안녕하세요. 공유. 37살이시네요."    
     url(r'^hello/(?P<name>[ㄱ-힣]+)/(?P<age>\d+)/$', views.hello),
+    
+    url(r'^list1/$', views.post_list1),
+    url(r'^list2/$', views.post_list2),
+    url(r'^list3/$', views.post_list3),
+    url(r'^excel/$', views.excel_download),
 ]
