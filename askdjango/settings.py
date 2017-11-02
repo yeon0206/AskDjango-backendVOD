@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog', #생성한 앱 등록 필수!!
+    'dojo',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'askdjango.urls'
+ROOT_URLCONF = 'askdjango.urls' #최상위 urlconf로 정한다.
 
 TEMPLATES = [
     {
