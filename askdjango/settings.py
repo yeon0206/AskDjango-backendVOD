@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog', #생성한 앱 등록 필수!!
     'dojo',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# NOTEBOOK_KERNEL_SPEC_NAMES = ['Python [Root]'] #일반 shell에서 django로 접근하는방법
+'''
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproj.settings') # FIXME: 경로 확인
+import django
+django.setup()
+# 지금부터 모든 장고환경에 접근 가능
+from blog.models import Post
+일반 쉘에서도 장고 환경에 접근은 가능하나
+django shell을 쓰는 것이 편리
+'''
