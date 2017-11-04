@@ -7,6 +7,13 @@
 </head>
 <body>
     <h1>AskDjango</h1>
+    
+    <p>안녕하세요. 쿠키입니다. ;)</p>
+
+    <form action="" method="get">
+        <input type="text" name='q' value="{{ q }}">
+        <input type="submit" value='검색'>
+    </form>
     <ul>
         {% for post in post_list %}
         <li>
@@ -17,9 +24,6 @@
         </li>
         {% endfor %}    
     </ul>
-    
-    <p>안녕하세요. 쿠키입니다. ;)</p>
-
     <ul>
         <li> 
             <a href="https://youtu.be/SMMaUgGeupQ">착한애견 Tv 클릭해보세요.</a>
