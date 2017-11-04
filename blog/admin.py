@@ -35,3 +35,11 @@ class PostAdmin(admin.ModelAdmin):
         updated_count = queryset.update(status='p') # QeurySet.update 
         self.message_user(request, '{}건의 포스팅을 Published상태로 변경'.format(updated_count)) # django message framework 활용
     make_published.short_description = '지정 포스팅을 Published상태로 변경합니다.'
+
+
+'''
+2. list_display에 'content_size'를 필드로 넣었는데 이는 1급함수를 호출하는 방식으로 넣어 admin페이지에서 각 list row마다 함수를 호출하는 건가요?
+3, content_size.short_description 옵션을 list_display 보다 밑에 썼는데 파이썬은 이를 어떻게 해석하는지 궁금합니다.
+답변2) list_display 에 함수가 지정될 경우, 각 Row마다 개별적으로 호출됩니다.
+답변3) admin 에서는 list_display 에 지정된 attr에 short_description 값이 지정되어있을 경우 이를 label로서 활용합니다. 미지정시에는 attr 의 description 이나 함수명이 사용됩니다.
+'''

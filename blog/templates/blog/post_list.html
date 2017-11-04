@@ -7,7 +7,17 @@
 </head>
 <body>
     <h1>AskDjango</h1>
-
+    <ul>
+        {% for post in post_list %}
+        <li>
+            {{ post.id }}
+            {{ post.title }}
+            <small>by {{ post.author}}</small>
+            <small>at {{ post.updated_at}}</small>
+        </li>
+        {% endfor %}    
+    </ul>
+    
     <p>안녕하세요. 쿠키입니다. ;)</p>
 
     <ul>
