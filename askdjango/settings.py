@@ -36,12 +36,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
+    'django_extensions',
     'blog', #생성한 앱 등록 필수!!
     'dojo',
-    'django_extensions',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -132,3 +134,5 @@ from blog.models import Post
 일반 쉘에서도 장고 환경에 접근은 가능하나
 django shell을 쓰는 것이 편리
 '''
+
+INTERNAL_IPS = ['127.0.0.1']
