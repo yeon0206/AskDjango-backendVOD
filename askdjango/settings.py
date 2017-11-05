@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'blog', #생성한 앱 등록 필수!!
     'dojo',
+    'shop',
 ]
 
 MIDDLEWARE = [
