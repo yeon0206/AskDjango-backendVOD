@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'django_extensions',
+    'accounts',
     'blog', #생성한 앱 등록 필수!!
     'dojo',
 ]
