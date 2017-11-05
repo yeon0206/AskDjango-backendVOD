@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.post_list, name='post_list'), # 포스팅 목록
     # url(r'^new/$', views.post_new, name='post_new'), # 새 포스팅
-    # url(r'^(?P<id>\d+)/$', views.post_detail, name='post_detail'), # 포스팅 보기
+    url(r'^(?P<id>\d+)/$', views.post_detail), # 포스팅 보기(post_detail일 함수는 id라는 이름의 필드를 받을수 있어야한다)
     # url(r'^(?P<id>\d+)/edit/$', views.post_edit, name='post_edit'), # 포스팅 수정
     # url(r'^(?P<id>\d+)/delete/$', views.post_delete, name='post_delete'), # 포스팅 삭제
     # url(r'^(?P<id>\d+)/comments/$', views.comment_list, name='comment_list'), # 댓글 목록

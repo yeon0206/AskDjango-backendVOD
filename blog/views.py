@@ -1,5 +1,6 @@
 # blog/views.py
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import get_object_or_404, render
 from .models import Post
 
 def post_list(request):
@@ -24,3 +25,26 @@ QuerySet의 get함수는 인자를 1개 받기도 하고, 2개 받을 수도 있
 
 >>> queryset.get(접근Key, 디폴트값) # queryset에 지정Key가 없을 때, KeyError 예외가 발생하지 않고, 2번째 인자로 지정한 디폴트값이 리턴됩니다.
 '''
+
+def post_detail(request, id):
+    #url창에 localhost:8000/blog/10 을 적어주면, id=10을 받는다
+    #Post 게시물 하나를 지우고 다시 접근하면 서버에러 500을 발생시킴
+    #서버에러가 아니기때문에 Http404에러를 발생시켜줘야한다.
+    # try:
+    #     post = Post.objects.get(id=id)
+    # except Post.DoesNotExist:
+    #     raise Http404
+    post = get_object_or_404(Post, id=id)
+
+    ctx={
+        'post':post,
+    }
+    return render(request, 'blog/post_detail.html', ctx)
+
+# Post.objects.all() 은 QuerySet 이며,
+
+# QuerySet 의 filter 와 exclude, order_by 리턴값은 QuerySet 입니다.
+# QuerySet 의 get 리턴값은 해당 모델의 인스턴스이구요.
+# 잘 안 넘어간다고 하신. 아래 코드에서도 QuerySet 인스턴스가 post 변수에 담겨집니다.
+
+# post = Post.objects.all().filter(id=pk)

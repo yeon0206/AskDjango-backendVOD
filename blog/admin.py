@@ -1,7 +1,7 @@
 #blog/admin.py
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from .models import Post
+from .models import Post, Comment
 
 # 등록법 1
 # admin.site.register(Post) # 기본 ModelAdmin으로 등록
@@ -43,3 +43,7 @@ class PostAdmin(admin.ModelAdmin):
 답변2) list_display 에 함수가 지정될 경우, 각 Row마다 개별적으로 호출됩니다.
 답변3) admin 에서는 list_display 에 지정된 attr에 short_description 값이 지정되어있을 경우 이를 label로서 활용합니다. 미지정시에는 attr 의 description 이나 함수명이 사용됩니다.
 '''
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass
