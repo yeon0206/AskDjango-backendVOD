@@ -1,29 +1,60 @@
 {% extends "blog/layout.html" %}
 
 {% block content %}
-    <form action="" method="get">
-        <input type="text" name='q' value="{{ q }}">
-        <input type="submit" value='검색'>
-    </form>
-    <ul>
-        {% for post in post_list %}
-        <li>
-            {{ post.id }}
-            {% comment %} <a href="/blog/{{ post.id }}/">
-                    {{ post.title }}
-            </a> {% endcomment %}
-            <a href="{% url "blog:post_detail" post.id %}">
-                {{ post.title }}
-            </a>
-            <small>by {{ post.author}}</small>
-            <small>at {{ post.updated_at}}</small>
-        </li>
-        {% endfor %}    
-    </ul>
-    <ul>
-        <li> 
-            <a href="https://youtu.be/SMMaUgGeupQ">착한애견 Tv 클릭해보세요.</a>
-        </li>
-    </ul>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Django Template <sup>by AskDjango</sup></h1>
+            <p>여러분의 파이썬/장고 페이스메이커가 되겠습니다.</p>
+            <p>
+                <a class="btn btn-lg btn-primary" href="http://facebook.com/groups/askdjango">
+                    AskDjango 페이스북 그룹 &raquo;
+                </a>
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-info">
+                    <ul>
+                        <li> 
+                            <a href="https://youtu.be/SMMaUgGeupQ">착한애견 Tv 클릭해보세요.</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p>
+                    <form action="" method="get">
+                        <input type="text" name='q' value="{{ q }}">
+                        <input type="submit" value='검색' class="btn btn-primary">
+                    </form>
+                </p>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>title</th>
+                            <th>author</th>
+                            <th>updated_at</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in post_list %}
+                        <tr>
+                            <td>{{ post.id }}</td>
+                            <td><a href="{% url "blog:post_detail" post.id %}">{{ post.title }}</a></td>
+                            {% comment %} <a href="/blog/{{ post.id }}/">
+                                    {{ post.title }}
+                            </a> {% endcomment %}
+                            <td><small>by {{ post.author}}</small></td>
+                            <td><small>at {{ post.updated_at}}</small></td>
+                        </tr>
+                        {% endfor %}    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+    </div>
+
+    
 {% endblock %}
 
