@@ -23,4 +23,8 @@
         </li>
         {% endfor %}
     </ul>
+
+    <hr/>
+    <a href="{% url "post_list" %}">글목록</a> 
+    {% comment %} 인자가 없으니 안넘겨도됨 {% endcomment %}
 {% endblock %}

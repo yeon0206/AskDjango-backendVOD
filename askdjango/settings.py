@@ -60,8 +60,10 @@ ROOT_URLCONF = 'askdjango.urls' #최상위 urlconf로 정한다.
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [ # filesystem.Loader
+            os.path.join(BASE_DIR, 'askdjango', 'templates'),
+        ],
+        'APP_DIRS': True, #등록된 앱  app_directories.Loader
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
