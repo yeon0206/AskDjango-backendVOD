@@ -1,6 +1,7 @@
 #blog/models.py
 import re
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.forms import ValidationError
 
@@ -33,6 +34,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', args=[self.id])
+    # 해당 post=Post.object.first() 
+    # resolve_url(post) 이함수는 인자에 get_absolute_url 어트리뷰트가 있는지 확인해서 있으면 그 함수를 호출,리턴해줌
+    
 
 class Comment(models.Model):
     post = models.ForeignKey(Post) #post_id
