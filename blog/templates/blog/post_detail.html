@@ -25,6 +25,7 @@
     </ul>
 
     <hr/>
-    <a href="{% url "post_list" %}">글목록</a> 
+    <a href="{% url "blog:post_list" %}">글목록</a> 
+    {% comment %} {% url "namespace: URL reversename " 인자%} {% endcomment %}
     {% comment %} 인자가 없으니 안넘겨도됨 {% endcomment %}
 {% endblock %}
