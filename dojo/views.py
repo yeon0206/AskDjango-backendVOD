@@ -49,8 +49,10 @@ def post_new(request):
             '''
 
             #방법5) PostForm 클래스 안에서 구현
-            post = form.save()
-
+            post = form.save(commit=False)#두번저장되는거니깐 밑에서 따로 저장하겠다.
+            post.ip = request.META['REMOTE_ADDR']
+            #특정 모델필드는 사용자로부터 직접입력을 받는게 아니라 요청으로보내게됨
+            post.save()
 
 
             return redirect('/dojo/') #namespace:name
