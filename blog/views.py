@@ -15,6 +15,10 @@ def post_list(request):
     }
     return render(request, 'blog/post_list.html',ctx)
 
+    # HttpResponse 인스턴스인데, render를 통해서, 좀 더 쉽게 템플릿을 통한 렌더링
+    # response=render(request, 'blog/post_list.html',ctx)
+    # return response
+
 '''
 파이썬 dict타입에서도 지원하는 인터페이스입니다. request.GET은 QuerySet타입으로서, dict과 유사한 인터페이스를 제공해주고 있습니다.
 QuerySet의 get함수는 인자를 1개 받기도 하고, 2개 받을 수도 있습니다.
