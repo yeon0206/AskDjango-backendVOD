@@ -25,6 +25,7 @@ class PostForm(forms.Form):
 '''
 
 class PostForm(forms.ModelForm):
+    'Post Moel Fields정보와 함께 Validators도 같이 적용됨'
     class Meta:
         model = Post
         # fields='__all__'

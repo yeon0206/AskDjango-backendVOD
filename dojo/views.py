@@ -27,7 +27,8 @@ def post_new(request):
             '''
             # print(form.cleaned_data) #사전형식으로 출력
             post = Post() #Post인스턴스생성
-            post.title=form.cleaned_data['title']
+            post.title=form.cleaned_data['title'] 폼 인스턴스 내에서 clean함수를 통해 변환되었을 수도 있을 데이터
+            post.title=request.Post['title'](x) request.POST를 통한 접근 : BAD!!
             post.content=form.cleaned_data['content']
             post.save()
             '''
