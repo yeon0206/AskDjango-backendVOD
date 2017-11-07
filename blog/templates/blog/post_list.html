@@ -1,6 +1,7 @@
 {% extends "blog/layout.html" %}
 
 {% block content %}
+
     <div class="container">
         <div class="jumbotron">
             <h1>Django Template <sup>by AskDjango</sup></h1>
@@ -43,7 +44,7 @@
                         <tr>
                             <td>{{ post.id }}</td>
                             <td><a href="{% url "blog:post_detail" post.id %}">{{ post.title }}</a></td>
-                            {% comment %} <a href="/blog/{{ post.id }}/">
+                             {% comment %} <a href="/blog/{{ post.id }}/">
                                     {{ post.title }}
                             </a> {% endcomment %}
                             <td><small>by {{ post.author}}</small></td>
@@ -59,4 +60,30 @@
 
     
 {% endblock %}
+
+
+{% comment %} {% load bootstrap3 staticfiles %}
+{% bootstrap_css %}
+{% bootstrap_javascript %} 
+
+<table class="table table-bordered table-hover">
+    <caption>Post List</caption>
+    <thead>
+        <tr>
+            <th>title</th>
+            <th>created at</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in post_list %}
+        <tr>
+            <td>{{ post.title }}</td>
+            <td>{{ post.updated_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="text-center">
+ {% bootstrap_pagination page_obj %}
+</div> {% endcomment %}
 

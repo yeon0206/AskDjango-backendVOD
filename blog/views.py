@@ -3,7 +3,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect,render
 from .models import Post
 from .forms import PostForm
-
+from django.views.generic import ListView
 
 def post_list(request):
     qs = Post.objects.all()
@@ -15,6 +15,7 @@ def post_list(request):
         'post_list': qs,
         'q' : q,
     }
+    # post_list = ListView.as_view(model=Post, paginate_by=10)
     return render(request, 'blog/post_list.html',ctx)
 
     # HttpResponse 인스턴스인데, render를 통해서, 좀 더 쉽게 템플릿을 통한 렌더링
