@@ -29,7 +29,10 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         # fields='__all__'
-        fields=['title','content']
+        fields=['title','content','user_agent']
+        widgets={
+            'user_agent': forms.HiddenInput,
+        }
     
     ''' # 모델폼내부에 구현되어있음
     def save(self, commit=True):
