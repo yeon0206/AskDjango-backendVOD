@@ -2,7 +2,7 @@
 import os
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .forms import PostForm
 from .models import Post
 '''
@@ -65,6 +65,26 @@ def post_new(request):
         'form':form,
     }
     return render(request, 'dojo/post_form.html',ctx)
+
+# post_new함수에서 인스턴스를 instance=post 키워드 아큐먼트로 넣어준다
+def post_edit(request, id):
+    post = get_object_or_404(Post, id=id)
+    if request.method == 'POST':
+        form=PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.ip = request.META['REMOTE_ADDR']
+            post.save()
+            return redirect('/dojo/') #namespace:name
+        else: #검증에 실패하면, form.errors와 form.각필드.errors에 오류정보를 저장 
+            form.errors
+    else:
+        form = PostForm(instance=post) # 빈 폼
+    ctx={
+        'form':form,
+    }
+    return render(request, 'dojo/post_form.html',ctx)
+
 
 def mysum(request,numbers):
     # numbers = "1/2/12/123/12312/312/123123"
