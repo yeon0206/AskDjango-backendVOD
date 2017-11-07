@@ -44,9 +44,17 @@ def post_new(request):
                                      content=form.cleaned_data['content'])
             '''
             #방법4)
+            '''
             post = Post.objects.create(**form.cleaned_data)
+            '''
+
+            #방법5) PostForm 클래스 안에서 구현
+            post = form.save()
+
+
 
             return redirect('/dojo/') #namespace:name
+        
         else: #검증에 실패하면, form.errors와 form.각필드.errors에 오류정보를 저장 
             form.errors
     else:
