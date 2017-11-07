@@ -29,7 +29,8 @@
             
                 <hr/>
                 <a href="{% url "blog:post_list" %}" class="btn btn-primary">글목록</a> 
-                {% comment %} {% url "namespace: URL reversename " 인자%} {% endcomment %}
+                <a href="{% url "blog:post_edit" post.id %}" class="btn btn-default">글수정</a> 
+                {% comment %} {% url "namespace: URL reversename " 인자 %} {% endcomment %}
                 {% comment %} 인자가 없으니 안넘겨도됨 {% endcomment %}
                 {% comment %} {{ post.get_absolute_url }} 도 가능{% endcomment %}
             </div>
