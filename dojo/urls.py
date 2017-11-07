@@ -11,6 +11,8 @@ urlpatterns =[
 '''
 
 urlpatterns =[
+    url(r'^new/$', views.post_new),
+
     url(r'^sum/(?P<numbers>[\d/]+)/$', views.mysum),
         #[\d/]+ : 숫자혹은 /가 하나이상 반복이된다면
 
