@@ -23,6 +23,9 @@ SECRET_KEY = '7z+k9odv3y7j^n22c#)bs$yg4h=(#3nqzlcs623%(3n_i9w@=l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#프로젝트/urls.py에 지정도 안해줬는데 어떻게 응답처리?
+#개발환경에서의 static파일 서빙 지원(when, DEBUG=True)
+#개발목적!으로만 제공(python manage.py runserver)
 
 ALLOWED_HOSTS = ['*']
 
@@ -123,6 +126,7 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
@@ -130,6 +134,10 @@ STATIC_URL = '/static/' #각 static 파일에 대한 URL Prefix, view url처럼
 STATICFILES_DIRS=[ #FileSystemFinder를 위한 static 디렉토리 목록
     os.path.join(BASE_DIR, 'askdjango','static'),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#python manage.py collectstatic으로 폴더생성 및 흩어진 static을 모아줌
+
+
 
 # NOTEBOOK_KERNEL_SPEC_NAMES = ['Python [Root]'] #일반 shell에서 django로 접근하는방법
 '''
