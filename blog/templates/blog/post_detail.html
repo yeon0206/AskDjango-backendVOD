@@ -10,6 +10,11 @@
             <div class="col-sm-12">
                 <h2>{{ post.title }}</h2>
                 
+                {% if post.photo %}
+                {% comment %} <img src="/media/{{ post.photo }}" style="max_width: 100%;" /> {% endcomment %}
+                <img src="{{ post.photo.url }}" style="max_width: 100%;" />
+                {% endif %}
+                
                 {{ post.content | linebreaks }}
                 {% comment %} {{ post.content | linebreaksbr }} {% endcomment %}
             
