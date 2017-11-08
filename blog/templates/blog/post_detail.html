@@ -12,7 +12,8 @@
                 
                 {% if post.photo %}
                 {% comment %} <img src="/media/{{ post.photo }}" style="max_width: 100%;" /> {% endcomment %}
-                <img src="{{ post.photo_thumbnail.url }}" style="max_width: 100%;" />
+                {% comment %} <img src="{{ post.photo_thumbnail.url }}" style="max_width: 100%;" /> {% endcomment %}
+                <img src="{{ post.photo.url }}" style="max_width: 100%;" />
                 {% endif %}
 
                 {{ post.content | linebreaks }}

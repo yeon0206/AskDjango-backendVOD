@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.forms import ValidationError
-from imagekit.models import ImageSpecField
+from imagekit.models import ImageSpecField,ProcessedImageField
 from imagekit.processors import Thumbnail
 
 def lnglat_validator(value):
@@ -23,8 +23,16 @@ class Post(models.Model):
         help_text='포스팅 제목을 입력해주세요. 최대 100자 내외. ') #길이 제한있는 문자열
     content = models.TextField(verbose_name='내용')            #길이 제한이 없는 문자열(쿼리성능이 안좋아져서 타이트하게 지정)
     
-    photo = models.ImageField(blank=True, upload_to='blog/post/%Y/%m/%d') #pillow 설치필요, upload_to상대경로
-    photo_thumbnail = ImageSpecField(source='photo',
+    # 1) 원본이미지 저장, 썸네일 처리
+    # photo = models.ImageField(blank=True, upload_to='blog/post/%Y/%m/%d') #pillow 설치필요, upload_to상대경로
+    # photo_thumbnail = ImageSpecField(source='photo',
+    #         processors=[Thumbnail(300,300)],
+    #         format = 'JPEG',
+    #         options={'quality':60},
+    #         )
+    
+    # 2) 원본 이미지 저장 없이, 썸네일 처리
+    photo = ProcessedImageField(blank=True, upload_to='blog/post/%Y/%m/%d',
             processors=[Thumbnail(300,300)],
             format = 'JPEG',
             options={'quality':60},
