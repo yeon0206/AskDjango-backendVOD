@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap3',
     'debug_toolbar',
     'django_extensions',
-    'bootstrap3',
+    'imagekit',
     'accounts',
     'blog', #생성한 앱 등록 필수!!
     'dojo',
