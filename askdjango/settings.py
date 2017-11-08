@@ -137,6 +137,9 @@ STATICFILES_DIRS=[ #FileSystemFinder를 위한 static 디렉토리 목록
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #python manage.py collectstatic으로 폴더생성 및 흩어진 static을 모아줌
 
+MEDIA_URL= '/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media') 
+
 
 
 # NOTEBOOK_KERNEL_SPEC_NAMES = ['Python [Root]'] #일반 shell에서 django로 접근하는방법
