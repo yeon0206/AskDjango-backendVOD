@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'debug_toolbar',
     'django_extensions',
-    'imagekit',
+    'imagekit', #image thumbnail
     'accounts',
     'blog', #생성한 앱 등록 필수!!
     'dojo',
