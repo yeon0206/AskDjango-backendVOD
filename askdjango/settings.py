@@ -126,7 +126,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' #각 static 파일에 대한 URL Prefix, view url처럼
+STATICFILES_DIRS=[ #FileSystemFinder를 위한 static 디렉토리 목록
+    os.path.join(BASE_DIR, 'askdjango','static'),
+]
 
 # NOTEBOOK_KERNEL_SPEC_NAMES = ['Python [Root]'] #일반 shell에서 django로 접근하는방법
 '''
