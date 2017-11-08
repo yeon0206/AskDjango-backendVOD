@@ -1,4 +1,10 @@
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
+{% comment %}
+ post 방식일때, enctype 웹브라우저가 서버로 파일 전송함! 
+ 파일이업로드 안된다? 두가지 확인.
+ 1.enctype여부
+ 2.views.py에 request.POST, request.FILES 지정
+{% endcomment %}
     {% csrf_token %}
     <table>
         {{ form.as_table }}
