@@ -1,4 +1,5 @@
 {% extends "blog/layout.html" %}
+{% load imagekit %}
 
 {% block title %}
     {{ post.title }}
@@ -12,8 +13,13 @@
                 
                 {% if post.photo %}
                 {% comment %} <img src="/media/{{ post.photo }}" style="max_width: 100%;" /> {% endcomment %}
-                {% comment %} <img src="{{ post.photo_thumbnail.url }}" style="max_width: 100%;" /> {% endcomment %}
-                <img src="{{ post.photo.url }}" style="max_width: 100%;" />
+                {% comment %} 방법1 원본저장)<img src="{{ post.photo_thumbnail.url }}" style="max_width: 100%;" /> {% endcomment %}
+                {% comment %} 방법2 원본미저장)<img src="{{ post.photo.url }}" style="max_width: 100%;" /> {% endcomment %}
+                {% comment %} 방법3-1 템플릿){% thumbnail "100x100" post.photo as thumb %}     {% endcomment %}
+                {% comment %} 방법3-2 템플릿){% thumbnail "100x100" post.photo as thumb %}
+                    <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}" /> {% endcomment %}
+                    {% comment %} 방법3-3 템플릿){% endcomment %}
+                    {% thumbnail "100x100" post.photo -- style="" onclick="" class="" %} 
                 {% endif %}
 
                 {{ post.content | linebreaks }}
