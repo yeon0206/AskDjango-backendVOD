@@ -23,9 +23,7 @@ SECRET_KEY = '7z+k9odv3y7j^n22c#)bs$yg4h=(#3nqzlcs623%(3n_i9w@=l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-#프로젝트/urls.py에 지정도 안해줬는데 어떻게 응답처리?
-#개발환경에서의 static파일 서빙 지원(when, DEBUG=True)
-#개발목적!으로만 제공(python manage.py runserver)
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -136,10 +134,16 @@ STATICFILES_DIRS=[ #FileSystemFinder를 위한 static 디렉토리 목록
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #python manage.py collectstatic으로 폴더생성 및 흩어진 static을 모아줌
+#프로젝트/urls.py에 지정도 안해줬는데 어떻게 응답처리?
+#개발환경에서의 static파일 서빙 지원(when, DEBUG=True)
+#개발목적!으로만 제공(python manage.py runserver)
+
 
 MEDIA_URL= '/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media') 
-
+#STATIC files와 다르게 개발서버에서 서빙 미지원
+#개발 편의성 목적으로 직접 서빙 Rule추가 가능!
+#이렇게 하더라도 DEBUG=False일때는 static함수에서 빈 리스트를 리턴
 
 
 # NOTEBOOK_KERNEL_SPEC_NAMES = ['Python [Root]'] #일반 shell에서 django로 접근하는방법
