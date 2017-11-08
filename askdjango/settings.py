@@ -141,3 +141,8 @@ django shell을 쓰는 것이 편리
 '''
 
 INTERNAL_IPS = ['127.0.0.1']
+
+from django.contrib.messages import constants
+
+MESSAGE_LEVEL = constants.DEBUG #지금부터 debug레벨의 messages를 남길 수 있음..
+MESSAGE_TAGS ={constants.ERROR: 'danger'}
