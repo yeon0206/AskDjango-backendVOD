@@ -65,7 +65,8 @@ post_detail = DetailView.as_view(Post)
 '''
 
 # 4단계) 장고 기본 제공 DetailView CBV 쓰기
-post_detail = DetailView.as_view(model=Post, pk_url_kwarg='id')
+# post_detail = DetailView.as_view(model=Post, pk_url_kwarg='id')
+post_detail = DetailView.as_view(model=Post) #pk_url_kwarg 생략가능, 단 url넘겨줄때 id가아니라 pk로 넘겨줘야함, DetailView에서 디폴트 인자가 pk
 
 
 
