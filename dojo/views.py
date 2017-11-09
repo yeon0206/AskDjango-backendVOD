@@ -11,6 +11,13 @@ def mysum(request,x,y=0,z=0): #y=0,z=0으로 default 값을 지정해준다.
 #request: HttpRequest 는 request의 인스턴스
     return HttpResponse(int(x)+int(y)+int(z))
 '''
+# 1단계) Function Based View
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+    ctx={
+        'post': post,
+    }
+    return render(request, 'dojo/post_detail.html',ctx)
 
 def post_new(request):
     if request.method == 'POST':

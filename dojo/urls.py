@@ -12,6 +12,7 @@ urlpatterns =[
 
 urlpatterns =[
     url(r'^new/$', views.post_new),
+    url(r'^(?P<id>\d+)/$', views.post_detail),
     url(r'^(?P<id>\d+)/edit/$', views.post_edit),
 
     url(r'^sum/(?P<numbers>[\d/]+)/$', views.mysum),
