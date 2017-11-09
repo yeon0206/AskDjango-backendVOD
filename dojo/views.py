@@ -21,7 +21,6 @@ def post_detail(request, id):
         'post': post,
     }
     return render(request, 'dojo/post_detail.html',ctx)
-'''
 
 # 2단계) 함수를 통해, 뷰 생성 버전
 def generate_view_fn(model): #함수가 호출될때마다 새로운 함수가 정의가 된다 그리고 새로운 return값을 넘겨준다.
@@ -37,7 +36,31 @@ post_detail = generate_view_fn(Post)
 # 각각 새로운 view_fn이 생성되서 리턴값을 담아줌
 # post_detail = generate_view_fn(Post)
 # article_detail = generate_view_fn(Article)
+'''
+# 3단계) CBV형태로 컨셉만 구현,'이전 FBV를 CBV버전으로 컨셉만 간단히 구현. 같은 동작을 수행'
+class DetailView(object):
+    def __init__(self, model):
+        self.model = model
+    
+    def get_object(self, *args, **kwargs):
+        return get_object_or_404(self.model, id=kwargs['id'])
+    
+    def get_template_name(self):
+        return '{}/{}_detail.html'.format(self.model._meta.app_label, self.model._meta.model_name)
+    
+    def dispatch(self, request, *args, **kwargs):
+        return render(request, self.get_template_name(), {
+            self.model._meta.model_name: self.get_object(*args, **kwargs),
+            })
+    
+    @classmethod
+    def as_view(cls, model): #인자로: 클래스자체(Datailview),모델클래스(Post)
+        def view(request, *args, **kwargs): #언팩문법, 불특정갯수에 Postional Arguments, Keyword Arguments, *튜플, **사전
+            self = cls(model)
+            return self.dispatch(request, *args, **kwargs)
+        return view
 
+post_detail = DetailView.as_view(Post)
 
 
 
