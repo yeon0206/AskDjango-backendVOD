@@ -68,11 +68,16 @@ TEMPLATES = [
         ],
         'APP_DIRS': True, #등록된 앱  app_directories.Loader
         'OPTIONS': {
-            'context_processors': [
+            'context_processors': [ 
+            # 템플릿을 렌더링 할때 인자로 직접 넘겨주지 않았도, 
+            # 컨텍스 프로세서에 지정되어있는 함수들은 매번 테플릿 렌더링 하기 직전에 호출해서, 
+            # 함수들이 리턴한 사전의 값들을 다 합쳐서 그 값들을 템플릿에 전달 
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
+                'django.contrib.auth.context_processors.auth', #뷰에서 구현하지 않아도 템플릿에서 호출가능
                 'django.contrib.messages.context_processors.messages',
+                #커스텀
+                'blog.context_processors.blog',
             ],
         },
     },

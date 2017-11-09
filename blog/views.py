@@ -7,6 +7,7 @@ from .forms import PostForm
 from django.views.generic import ListView
 
 def post_list(request):
+    # print(request.user.is_authenticated)
     qs = Post.objects.all()
     q = request.GET.get('q','') #request get 쿼리셋어 q가있으면 가져오고, 없으면 빈문자열
     if q:

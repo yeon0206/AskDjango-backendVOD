@@ -29,6 +29,7 @@ urlpatterns = [
     # url(r'^$', RedirectView.as_view(pattern_name='blog:post_list')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('accounts.urls')),
+    # auth앱과 연동할건데, django.contrib.auth urls에는 namespace가 적용이 되어 있지 않기 때문에 accounts 앱에서도 namespace를 쓰지 않는다.
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^dojo/', include('dojo.urls', namespace='dojo')),
     url(r'^shop/', include('shop.urls', namespace='shop')),
