@@ -11,6 +11,9 @@ def mysum(request,x,y=0,z=0): #y=0,z=0으로 default 값을 지정해준다.
 #request: HttpRequest 는 request의 인스턴스
     return HttpResponse(int(x)+int(y)+int(z))
 '''
+
+'''
+# CBV 단계별 로직구현
 # 1단계) Function Based View
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
@@ -18,6 +21,27 @@ def post_detail(request, id):
         'post': post,
     }
     return render(request, 'dojo/post_detail.html',ctx)
+'''
+
+# 2단계) 함수를 통해, 뷰 생성 버전
+def generate_view_fn(model): #함수가 호출될때마다 새로운 함수가 정의가 된다 그리고 새로운 return값을 넘겨준다.
+    def view_fn(request, id): 
+        instance = get_object_or_404(model, id=id)
+        instance_name = model._meta.model_name #모델명의 소문자 호출해서 담아줌
+        template_name = '{}/{}_detail.html'.format(model._meta.app_label, instance_name) #앱이름,모델명소문자
+        return render(request, template_name, {instance_name: instance,})
+    return view_fn
+
+post_detail = generate_view_fn(Post)
+
+# 각각 새로운 view_fn이 생성되서 리턴값을 담아줌
+# post_detail = generate_view_fn(Post)
+# article_detail = generate_view_fn(Article)
+
+
+
+
+
 
 def post_new(request):
     if request.method == 'POST':
