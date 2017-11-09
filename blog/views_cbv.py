@@ -1,6 +1,8 @@
 from django import forms
-from django.views.generic import CreateView
+from django.views.generic import ListView, CreateView
 from .models import Post
+
+post_list = ListView.as_view(model=Post, paginate_by=100)
 
 #blog/forms.py 에 만들어줘야함
 class PostForm(forms.ModelForm):

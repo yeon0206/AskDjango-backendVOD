@@ -16,9 +16,10 @@ def post_list(request):
         'post_list': qs,
         'q' : q,
     }
-    # post_list = ListView.as_view(model=Post, paginate_by=10)
     return render(request, 'blog/post_list.html',ctx)
 
+# post_list = ListView.as_view(model=Post, paginate_by=10)
+    
     # HttpResponse 인스턴스인데, render를 통해서, 좀 더 쉽게 템플릿을 통한 렌더링
     # response=render(request, 'blog/post_list.html',ctx)
     # return response

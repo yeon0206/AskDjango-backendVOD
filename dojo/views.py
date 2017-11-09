@@ -69,7 +69,6 @@ post_detail = DetailView.as_view(Post)
 post_detail = DetailView.as_view(model=Post) #pk_url_kwarg 생략가능, 단 url넘겨줄때 id가아니라 pk로 넘겨줘야함, DetailView에서 디폴트 인자가 pk
 
 
-
 def post_new(request):
     if request.method == 'POST':
         #POST인자는 request.POST, request.FILES를 제공받음.
