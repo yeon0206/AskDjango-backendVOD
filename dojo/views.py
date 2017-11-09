@@ -3,6 +3,7 @@ import os
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.generic import DetailView
 from .forms import PostForm
 from .models import Post
 '''
@@ -36,7 +37,7 @@ post_detail = generate_view_fn(Post)
 # 각각 새로운 view_fn이 생성되서 리턴값을 담아줌
 # post_detail = generate_view_fn(Post)
 # article_detail = generate_view_fn(Article)
-'''
+
 # 3단계) CBV형태로 컨셉만 구현,'이전 FBV를 CBV버전으로 컨셉만 간단히 구현. 같은 동작을 수행'
 class DetailView(object):
     def __init__(self, model):
@@ -61,8 +62,10 @@ class DetailView(object):
         return view
 
 post_detail = DetailView.as_view(Post)
+'''
 
-
+# 4단계) 장고 기본 제공 DetailView CBV 쓰기
+post_detail = DetailView.as_view(model=Post, pk_url_kwarg='id')
 
 
 
