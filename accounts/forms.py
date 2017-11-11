@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import Profile
 class SignupForm(UserCreationForm): #SignupForm은 User모델에 대한 모델폼, 모델폼은 하나의 모델만 지원, SignupForm->User모델
     phone_number = forms.CharField()
@@ -21,3 +21,12 @@ class SignupForm(UserCreationForm): #SignupForm은 User모델에 대한 모델�
             address = self.cleaned_data['address'],
         )
         return user
+
+class LoginForm(AuthenticationForm):
+    answer = forms.IntegerField(label='3+3=?')
+
+    def clean_answer(self): #clean_필드명 통해서 유효성 검사
+        answer = self.cleaned_data.get('answer', None)
+        if answer != 6:
+            raise forms.ValidationError('mismatched!')
+        return answer
