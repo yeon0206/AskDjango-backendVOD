@@ -15,3 +15,6 @@ urlpatterns=[
 # settings의 티폴트값 : 
 # LOGIN_URL = '/accounts/login/'
 # LOGIN_REDIRECT_URL = '/accounts/profile/'
+
+# 앱/urls.py 에 namespace를 지정하실 수도 있습니다.
+# 앱에 일단 namespace를 적용하면, URL Reverse 시에는 필히 namespace를 써야만 합니다.
