@@ -12,6 +12,15 @@ class SignupForm(UserCreationForm): #SignupForm은 User모델에 대한 모델�
         # fields = ('username', 'email')
         fields = UserCreationForm.Meta.fields + ('email',)
         #UserCreationForm이 User모델에 대한 필드이며 User모델은 email필드를 가져있기때문에 호출가능
+        #장고는 fields 항목에 대해 튜플만 허용
+            # 그리고, 파이썬에서 소괄호는 2가지 의미로 사용되는 데요.
+
+            # 1) 우선순위 연산자로서의 소괄호
+            # 2) 쉬운 튜플 정의를 위한 소괄호
+
+            # ('email') 은 1번의 의미로 사용되었구요. 이는 곧 'email' 과 동일합니다.
+            # ('email',) 로 쓰셔야 튜플로 정의가 됩니다.
+    
     def save(self):
         user = super().save() #SignupForm에 save를 호출했으니 관련모델인 user인스턴스를 리턴
 

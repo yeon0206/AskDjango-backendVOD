@@ -19,7 +19,8 @@ urlpatterns = [
     # url(r'^(?P<id>\d+)/delete/$', views.post_delete, name='post_delete'), # 포스팅 삭제(구현안함)
     url(r'^cbv/(?P<pk>\d+)/delete/$', views_cbv.post_delete, name='post_delete'), # 포스팅 삭제(CBV)
     
-    
+    url(r'^comments/$', views.comment_list, name='comment_list'), #
+
     # url(r'^(?P<id>\d+)/comments/$', views.comment_list, name='comment_list'), # 댓글 목록
     # url(r'^(?P<post_id>\d+)/comments/(?P<id>\d+)/edit/$', views.comment_edit, name='comment_edit'),# 댓글 수정
     # url(r'^(?P<post_id>\d+)/comments/(?P<id>\d+)/delete/$', views.comment_delete, name='comment_delete'),# 댓글 삭제
