@@ -87,7 +87,10 @@ def post_edit(request, id):
     })
 
 def comment_list(request):
-    comment_list = Comment.objects.all()
+    comment_list = Comment.objects.all().select_related('post') 
+    #Comment에 대한 sql을 요청할때 한번에 같이 Post sql을 요청한다.
+    #외래키 or 원투원 필드를 쓸 때 활용. 생성되는 sql수를 현저하게 줄일 수 있다. 
+    # SELECT ••• FROM "blog_comment" INNER JOIN "blog_post" ON ("blog_comment"."post_id" = "blog_post"."id")
     return render(request, 'blog/comment_list.html',{
         'comment_list' : comment_list,    
     })
