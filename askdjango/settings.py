@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_extensions',
     'imagekit', #image thumbnail
+    'raven.contrib.django.raven_compat', #Sentry를 통한 에러로깅
     'accounts',
     'blog', #생성한 앱 등록 필수!!
     'dojo',
@@ -172,3 +173,18 @@ MESSAGE_LEVEL = constants.DEBUG #지금부터 debug레벨의 messages를 남길 
 MESSAGE_TAGS ={constants.ERROR: 'danger'}
 
 NAVER_CLIENT_ID = 'JCv1RVmz_rGXNeiCaFMT'
+
+
+import raven
+GIT_ROOT = BASE_DIR # FIXME: 현 프로젝트 ROOT 지정
+if os.path.exists(os.path.join(GIT_ROOT, '.git')):
+    release = raven.fetch_git_sha(GIT_ROOT) # 현재 최근 커밋해시 획득
+else:
+    release = 'dev'
+
+RAVEN_CONFIG = {
+    'dsn': 'https://0b4cb1fb89b345e39f748e66b411ab80:d1fa6f82f5e741dfb9aa0deaacc27cd5@sentry.io/243855',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': release,
+}
