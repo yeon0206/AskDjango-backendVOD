@@ -34,14 +34,19 @@
                     <li>
                         {{ comment.message }}
                         <small>by {{ comment.author }}</small>
-                        <small>at {{ comment.updated_at }}</small>    
+                        <small>at {{ comment.updated_at }}</small>
+                        {% if comment.author == request.user %}
+                            <small><a href="{{ comment.get_edit_url }}">수정</a></small>
+                            <small><a href="{{ comment.get_delete_url }}">삭제</a></small>
+                        {% endif %}
                     </li>
                     {% endfor %}
                 </ul>
             
                 <hr/>
                 <a href="{% url "blog:post_list" %}" class="btn btn-primary">글목록</a> 
-                <a href="{% url "blog:post_edit" post.id %}" class="btn btn-default">글수정</a> 
+                <a href="{% url "blog:post_edit" post.id %}" class="btn btn-default">글수정</a>
+                <a href="{% url "blog:comment_new" post.id %}" class="btn btn-success">댓글쓰기</a> 
                 {% comment %} {% url "namespace: URL reversename " 인자 %} {% endcomment %}
                 {% comment %} 인자가 없으니 안넘겨도됨 {% endcomment %}
                 {% comment %} {{ post.get_absolute_url }} 도 가능{% endcomment %}

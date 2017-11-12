@@ -21,9 +21,9 @@ urlpatterns = [
     
     url(r'^comments/$', views.comment_list, name='comment_list'), #
 
-    # url(r'^(?P<id>\d+)/comments/$', views.comment_list, name='comment_list'), # 댓글 목록
-    # url(r'^(?P<post_id>\d+)/comments/(?P<id>\d+)/edit/$', views.comment_edit, name='comment_edit'),# 댓글 수정
-    # url(r'^(?P<post_id>\d+)/comments/(?P<id>\d+)/delete/$', views.comment_delete, name='comment_delete'),# 댓글 삭제
+    url(r'^(?P<post_id>\d+)/comments/new$', views.comment_new, name='comment_new'), # 댓글 생성
+    url(r'^(?P<post_id>\d+)/comments/(?P<id>\d+)/edit/$', views.comment_edit, name='comment_edit'),# 댓글 수정
+    url(r'^(?P<post_id>\d+)/comments/(?P<id>\d+)/delete/$', views.comment_delete, name='comment_delete'),# 댓글 삭제
 ]
 
 #정규표현식: ^: 문자열의 시작, $: 문자열의 끝, 따라서 아무런 문자열이 없다, 즉, 최상위 주소 패턴을 의미한다.

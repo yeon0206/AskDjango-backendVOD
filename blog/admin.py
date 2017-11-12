@@ -19,6 +19,7 @@ from .models import Post, Comment, Tag
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display=['id','title','tag_list','content_size','status','created_at','updated_at']
+    list_display_links=['title']
     actions=['make_draft','make_published']
     
 

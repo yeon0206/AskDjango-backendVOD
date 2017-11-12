@@ -61,10 +61,18 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post) #post_id
-    author = models.CharField(max_length=20)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
     message = models.TextField()
     created_at= models.DateTimeField(auto_now_add=True)
     updated_at= models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-id']
+    
+    def get_edit_url(self):
+        return reverse('blog:comment_edit', args=[self.post.id, self.id])
+    def get_delete_url(self):
+        return reverse('blog:comment_delete', args=[self.post.id, self.id])
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
