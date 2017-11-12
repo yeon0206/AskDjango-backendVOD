@@ -18,9 +18,21 @@ from .models import Post, Comment, Tag
 #등록법 3
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display=['id','title','content_size','status','created_at','updated_at']
+    list_display=['id','title','tag_list','content_size','status','created_at','updated_at']
     actions=['make_draft','make_published']
     
+
+    # Post에서 Tag로의 접근 호출
+    def tag_list(request, post):
+        return ',' .join(tag.name for tag in post.tag_set.all()) # list comprehension
+    
+    #prefetch_related를 통해 sql수를 줄임
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related('tag_set')
+
+    
+
     def content_size(self,post):
         return mark_safe('<strong>{}</strong>글자'.format(len(post.content)))
     content_size.short_description='글자수'
