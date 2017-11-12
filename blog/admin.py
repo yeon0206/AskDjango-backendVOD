@@ -46,7 +46,18 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['id','author','post_content_len']
+    
+    # 첫번째 방법 ModelAdmin에 list_select_related 옵션사용 sql을 줄인다
+    # list_select_related = ['post']
+
+    def post_content_len(self, comment):
+        return '{}글자'.format(len(comment.post.content))
+
+    # 두번째 방법 직접 멤버함수 재정의
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.select_related('post')
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
