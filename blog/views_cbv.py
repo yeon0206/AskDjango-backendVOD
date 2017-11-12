@@ -3,7 +3,19 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
 
-post_list = ListView.as_view(model=Post)
+# CBV에서 prefetch_related 구현
+class PostListView(ListView):
+    model = Post
+    queryset=Post.objects.all().prefetch_related('tag_set')
+
+post_list = PostListView.as_view()
+    
+# post_list = ListView.as_view(model=Post, 
+#                             queryset=Post.objects.all().prefetch_related('tag_set'),
+#                             )
+
+
+
 
 post_detail = DetailView.as_view(model=Post)
 

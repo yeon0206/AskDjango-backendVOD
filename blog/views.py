@@ -6,11 +6,11 @@ from .models import Post, Comment
 from .forms import PostForm
 from django.views.generic import ListView
 
-def post_list(request):
+def post_list(request): #(Post->Comment 접근)
     # print(request.user.is_authenticated)
     qs = Post.objects.all().prefetch_related('tag_set')
     #MtoM or FK의 reverse relation
-    #Post에서 Commnet 접근, Tag접근
+    #각 관계 별로 DB쿼리를 수행하고, 파이썬 단에서 조인을 수행
     q = request.GET.get('q','') #request get 쿼리셋어 q가있으면 가져오고, 없으면 빈문자열
     if q:
         qs = qs.filter(title__icontains=q)
@@ -88,7 +88,7 @@ def post_edit(request, id):
         'form':form,
     })
 
-def comment_list(request):
+def comment_list(request): #테스트를 위해 함수구현(Comment->Post 접근)
     comment_list = Comment.objects.all().select_related('post') 
     #Comment에 대한 sql을 요청할때 한번에 같이 Post sql을 요청한다.
     #외래키 or 원투원 필드를 쓸 때 활용. 생성되는 sql수를 현저하게 줄일 수 있다. 
