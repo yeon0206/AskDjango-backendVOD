@@ -4,8 +4,8 @@ from . import views
 from . import views_cbv
 
 urlpatterns = [
-    #url(r'^$', views.post_list, name='post_list'), # 포스팅 목록
-    url(r'^$', views_cbv.post_list, name='post_list'), # 포스팅 목록(CBV)
+    url(r'^$', views.post_list, name='post_list'), # 포스팅 목록
+    # url(r'^$', views_cbv.post_list, name='post_list'), # 포스팅 목록(CBV)
     
     url(r'^new/$', views.post_new, name='post_new'), # 새 포스팅
     # url(r'^cbv/new/$', views_cbv.post_new, name='post_new'), # 새 포스팅 (CBV)
