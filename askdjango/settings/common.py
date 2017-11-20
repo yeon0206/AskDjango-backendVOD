@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-
+from os.path import abspath, dirname, join
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# 장고 프로젝트 ROOT경로를 계산 settings.py의 위치를 기준으로 계산
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # abspath,dirname,join 임포트
+# ROOT 경로는 src
+# /Users/giyeon/01Nomade/05django/01firstvod/src/askdjango/settings.py 변경전
+# /Users/giyeon/01Nomade/05django/01firstvod/src/askdjango/settings/common.py 변경후
+BASE_DIR = dirname(dirname(dirname(abspath(__file__))))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -47,7 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.naver',
 
     'bootstrap3',
-    'debug_toolbar',
+    
     'django_extensions',
     'imagekit', #image thumbnail
     'raven.contrib.django.raven_compat', #Sentry를 통한 에러로깅
@@ -58,7 +63,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -149,22 +154,28 @@ USE_TZ = True
 
 
 
+#STATIC은 개발 리소스로써의 정적인 파일
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/' #각 static 파일에 대한 URL Prefix, view url처럼
-STATICFILES_DIRS=[ #FileSystemFinder를 위한 static 디렉토리 목록
+STATIC_URL = '/static/' #개발 리소스로서의 정적파일을 서빙, 각 static 파일에 대한 URL Prefix, view url처럼
+STATICFILES_DIRS=[ 
     os.path.join(BASE_DIR, 'askdjango','static'),
-]
+] 
+#FileSystemFinder를 위한 static 디렉토리 목록, 프로젝트 전반적으로 사용될 static파일의 디렉토리 경로를 다수지정
+#1)앱 디렉토리 파인더 : 기본활성화
+#2)파일시스템 파인더 : STATICFILES_DIRS로 이 경로에 정적인 파일이 있음을 알려준다.
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#python manage.py collectstatic으로 폴더생성 및 흩어진 static을 모아줌
+#python manage.py collectstatic으로 폴더생성 및 흩어진 static을 복사해서 모아줌(절대경로)
 #프로젝트/urls.py에 지정도 안해줬는데 어떻게 응답처리?
 #개발환경에서의 static파일 서빙 지원(when, DEBUG=True)
 #개발목적!으로만 제공(python manage.py runserver)
 
 
-MEDIA_URL= '/media/'
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media') 
+#MEDIA는 유저가 업로드한 모든 파일
+MEDIA_URL= '/media/' #유저가 업로드한 파일을 서빙할 때, prefix url, 끝이 필히 /로 끝나야함
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media')  #유저가 업로드한 파일을 저장하는 ROOT경로(절대경로)
 #STATIC files와 다르게 개발서버에서 서빙 미지원
 #개발 편의성 목적으로 직접 서빙 Rule추가 가능!
 #이렇게 하더라도 DEBUG=False일때는 static함수에서 빈 리스트를 리턴
@@ -182,7 +193,7 @@ from blog.models import Post
 django shell을 쓰는 것이 편리
 '''
 
-INTERNAL_IPS = ['127.0.0.1']
+
 
 from django.contrib.messages import constants
 

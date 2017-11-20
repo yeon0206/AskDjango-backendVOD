@@ -3,7 +3,9 @@ import os
 import sys
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "askdjango.settings")
+    # DJANGO_SETTINGS_MODULE을 지정하지 않았을 때 DEFAULT값으로 두번째 인자인 askdjango.settings.dev 실행된다.
+    # os.environ.setdefault("DJANGO_SETTINGS_MODULE", "askdjango.settings") # settings 분기전
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "askdjango.settings.dev") # settings 폴더 생성후 분기
     try:
         from django.core.management import execute_from_command_line
     except ImportError:
